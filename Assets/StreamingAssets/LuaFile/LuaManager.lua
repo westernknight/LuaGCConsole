@@ -1,6 +1,11 @@
 
+--ZBS = "D:/ZeroBraneStudio/";
+--package.path = package.path..ZBS
 
 
-function Start( arg )
-	print("here")
-end
+LuaManager.instance:DoFile("DemoScene")
+--luaManager:DoFile("DemoScene")
+
+--function Start( arg )
+	
+--end

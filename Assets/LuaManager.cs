@@ -9,6 +9,11 @@ public class LuaManager : MonoBehaviour {
     LuaScriptMgr mgr;
     LuaState l;
     public bool isUseLua;
+    public static LuaManager instance;
+    void Awake()
+    {
+        instance = this;
+    }
 	// Use this for initialization
 	void Start () {
         if (isUseLua)
@@ -18,16 +23,14 @@ public class LuaManager : MonoBehaviour {
             LuaState l = mgr.lua;
             string readToEnd = ConfigFileReader.FilePath(Path.Combine(Application.streamingAssetsPath, "LuaFile/LuaManager.lua"));
             mgr.DoString(readToEnd);
-
-            LuaFunction func = mgr.GetLuaFunction("Start");
-            int top = func.BeginPCall();
-            IntPtr L = func.GetLuaState();
-            func.PCall(top, 0);
-            func.EndPCall(top);
-           
         }
+
 	}
-	
+    public void DoFile(string luafile)
+    {
+        string readToEnd = ConfigFileReader.FilePath(Path.Combine(Application.streamingAssetsPath, "LuaFile/" + luafile+".lua"));
+        mgr.DoString(readToEnd);
+    }
 	// Update is called once per frame
 	void Update () {
 	

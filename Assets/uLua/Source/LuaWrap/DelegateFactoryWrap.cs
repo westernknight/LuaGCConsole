@@ -12,6 +12,9 @@ public class DelegateFactoryWrap
 			new LuaMethod("UnityEngine_Events_UnityAction", UnityEngine_Events_UnityAction),
 			new LuaMethod("System_Reflection_MemberFilter", System_Reflection_MemberFilter),
 			new LuaMethod("System_Reflection_TypeFilter", System_Reflection_TypeFilter),
+			new LuaMethod("Func_string_string_string", Func_string_string_string),
+			new LuaMethod("GConsole_GConsoleListener", GConsole_GConsoleListener),
+			new LuaMethod("Func_string_string", Func_string_string),
 			new LuaMethod("AudioClip_PCMReaderCallback", AudioClip_PCMReaderCallback),
 			new LuaMethod("AudioClip_PCMSetPositionCallback", AudioClip_PCMSetPositionCallback),
 			new LuaMethod("Application_LogCallback", Application_LogCallback),
@@ -85,6 +88,36 @@ public class DelegateFactoryWrap
 		LuaScriptMgr.CheckArgsCount(L, 1);
 		LuaFunction arg0 = LuaScriptMgr.GetLuaFunction(L, 1);
 		Delegate o = DelegateFactory.System_Reflection_TypeFilter(arg0);
+		LuaScriptMgr.Push(L, o);
+		return 1;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Func_string_string_string(IntPtr L)
+	{
+		LuaScriptMgr.CheckArgsCount(L, 1);
+		LuaFunction arg0 = LuaScriptMgr.GetLuaFunction(L, 1);
+		Delegate o = DelegateFactory.Func_string_string_string(arg0);
+		LuaScriptMgr.Push(L, o);
+		return 1;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GConsole_GConsoleListener(IntPtr L)
+	{
+		LuaScriptMgr.CheckArgsCount(L, 1);
+		LuaFunction arg0 = LuaScriptMgr.GetLuaFunction(L, 1);
+		Delegate o = DelegateFactory.GConsole_GConsoleListener(arg0);
+		LuaScriptMgr.Push(L, o);
+		return 1;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Func_string_string(IntPtr L)
+	{
+		LuaScriptMgr.CheckArgsCount(L, 1);
+		LuaFunction arg0 = LuaScriptMgr.GetLuaFunction(L, 1);
+		Delegate o = DelegateFactory.Func_string_string(arg0);
 		LuaScriptMgr.Push(L, o);
 		return 1;
 	}

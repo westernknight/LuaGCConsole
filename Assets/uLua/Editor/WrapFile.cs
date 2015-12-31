@@ -25,7 +25,7 @@ public static class WrapFile {
         _GT(typeof(DelegateFactory)),
 
         _GT(typeof(GConsole)),
-        
+        _GT(typeof(LuaManager)),
         //unity                        
         _GT(typeof(Component)),
         _GT(typeof(Behaviour)),

@@ -38,6 +38,7 @@ public static class LuaBinder
 			case "KeyCodeWrap": KeyCodeWrap.Register(L); break;
 			case "LightTypeWrap": LightTypeWrap.Register(L); break;
 			case "LightWrap": LightWrap.Register(L); break;
+			case "LuaManagerWrap": LuaManagerWrap.Register(L); break;
 			case "MaterialWrap": MaterialWrap.Register(L); break;
 			case "MeshColliderWrap": MeshColliderWrap.Register(L); break;
 			case "MeshRendererWrap": MeshRendererWrap.Register(L); break;
