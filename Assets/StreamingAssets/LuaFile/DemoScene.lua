@@ -4,7 +4,31 @@ print("demo ")
 function Start(  )
 	print("demo start")
 end
-function LuaManagerStart( str )
-	-- body
+
+
+
+function RefreshLua( param )
+	LuaManager.instance:RefreshLua()
+	return "Refresh Lua sucess"
 end
-local start =DelegateFactory.Func_string_string(LuaManagerStart)
+
+local refreshlua =DelegateFactory.Func_string_string(RefreshLua)
+GConsole.AddCommand("refreshlua","Refresh Lua",refreshlua,"")
+
+
+
+
+
+function ChangeSex( param )
+	return "dd"
+end
+
+local changesex =DelegateFactory.Func_string_string(ChangeSex)
+GConsole.AddCommand("changesex","Change the Sex",changesex,"Usage: changesex [value between 0 and 1]")
+
+
+
+
+
+
+
