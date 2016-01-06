@@ -1,3 +1,3 @@
 
-LuaManager.instance:DoFile("DemoScene")
+LuaManager.DoFile("DemoScene")
 

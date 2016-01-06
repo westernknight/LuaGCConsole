@@ -15,6 +15,7 @@ public class DelegateFactoryWrap
 			new LuaMethod("Func_string_string_string", Func_string_string_string),
 			new LuaMethod("GConsole_GConsoleListener", GConsole_GConsoleListener),
 			new LuaMethod("Func_string_string", Func_string_string),
+			new LuaMethod("Action_string", Action_string),
 			new LuaMethod("AudioClip_PCMReaderCallback", AudioClip_PCMReaderCallback),
 			new LuaMethod("AudioClip_PCMSetPositionCallback", AudioClip_PCMSetPositionCallback),
 			new LuaMethod("Application_LogCallback", Application_LogCallback),
@@ -118,6 +119,16 @@ public class DelegateFactoryWrap
 		LuaScriptMgr.CheckArgsCount(L, 1);
 		LuaFunction arg0 = LuaScriptMgr.GetLuaFunction(L, 1);
 		Delegate o = DelegateFactory.Func_string_string(arg0);
+		LuaScriptMgr.Push(L, o);
+		return 1;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Action_string(IntPtr L)
+	{
+		LuaScriptMgr.CheckArgsCount(L, 1);
+		LuaFunction arg0 = LuaScriptMgr.GetLuaFunction(L, 1);
+		Delegate o = DelegateFactory.Action_string(arg0);
 		LuaScriptMgr.Push(L, o);
 		return 1;
 	}

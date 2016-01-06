@@ -30,10 +30,10 @@ public class LuaManager : MonoBehaviour
 
     }
 
-    public void DoFile(string luafile)
+    public static void DoFile(string luafile)
     {
         string readToEnd = ConfigFileReader.FilePath(Path.Combine(Application.streamingAssetsPath, "LuaFile/" + luafile + ".lua"));
-        mgr.DoString(readToEnd);
+        instance.mgr.DoString(readToEnd);
     }
     public void RefreshLua()
     {
@@ -52,12 +52,36 @@ public class LuaManager : MonoBehaviour
         string readToEnd = ConfigFileReader.FilePath(Path.Combine(Application.streamingAssetsPath, "LuaFile/LuaManager.lua"));
         mgr.DoString(readToEnd);
     }
-    // Update is called once per frame
+    public static GameObject GetGameObjectByComponent(MonoBehaviour mono)
+    {
+        return mono.gameObject;
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F5))
+        if (isUseLua)
         {
-            RefreshLua();
+            mgr.Update();
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                RefreshLua();
+            }
+
+        }
+
+    }
+    void LateUpdate()
+    {
+        if (isUseLua)
+        {
+            mgr.LateUpate();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (isUseLua)
+        {
+            mgr.FixedUpdate();
         }
     }
 }

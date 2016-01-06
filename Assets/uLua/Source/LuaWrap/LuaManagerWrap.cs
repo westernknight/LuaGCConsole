@@ -11,6 +11,7 @@ public class LuaManagerWrap
 		{
 			new LuaMethod("DoFile", DoFile),
 			new LuaMethod("RefreshLua", RefreshLua),
+			new LuaMethod("GetGameObjectByComponent", GetGameObjectByComponent),
 			new LuaMethod("New", _CreateLuaManager),
 			new LuaMethod("GetClassType", GetClassType),
 			new LuaMethod("__eq", Lua_Eq),
@@ -155,10 +156,9 @@ public class LuaManagerWrap
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int DoFile(IntPtr L)
 	{
-		LuaScriptMgr.CheckArgsCount(L, 2);
-		LuaManager obj = (LuaManager)LuaScriptMgr.GetUnityObjectSelf(L, 1, "LuaManager");
-		string arg0 = LuaScriptMgr.GetLuaString(L, 2);
-		obj.DoFile(arg0);
+		LuaScriptMgr.CheckArgsCount(L, 1);
+		string arg0 = LuaScriptMgr.GetLuaString(L, 1);
+		LuaManager.DoFile(arg0);
 		return 0;
 	}
 
@@ -169,6 +169,16 @@ public class LuaManagerWrap
 		LuaManager obj = (LuaManager)LuaScriptMgr.GetUnityObjectSelf(L, 1, "LuaManager");
 		obj.RefreshLua();
 		return 0;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetGameObjectByComponent(IntPtr L)
+	{
+		LuaScriptMgr.CheckArgsCount(L, 1);
+		MonoBehaviour arg0 = (MonoBehaviour)LuaScriptMgr.GetUnityObject(L, 1, typeof(MonoBehaviour));
+		GameObject o = LuaManager.GetGameObjectByComponent(arg0);
+		LuaScriptMgr.Push(L, o);
+		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]

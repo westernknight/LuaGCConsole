@@ -19,6 +19,7 @@ public static class DelegateFactory
 		dict.Add(typeof(Func<string,string,string>), new DelegateValue(Func_string_string_string));
 		dict.Add(typeof(GConsole.GConsoleListener), new DelegateValue(GConsole_GConsoleListener));
 		dict.Add(typeof(Func<string,string>), new DelegateValue(Func_string_string));
+		dict.Add(typeof(Action<string>), new DelegateValue(Action_string));
 		dict.Add(typeof(AudioClip.PCMReaderCallback), new DelegateValue(AudioClip_PCMReaderCallback));
 		dict.Add(typeof(AudioClip.PCMSetPositionCallback), new DelegateValue(AudioClip_PCMSetPositionCallback));
 		dict.Add(typeof(Application.LogCallback), new DelegateValue(Application_LogCallback));
@@ -140,6 +141,19 @@ public static class DelegateFactory
 			object[] objs = func.PopValues(top);
 			func.EndPCall(top);
 			return (string)objs[0];
+		};
+		return d;
+	}
+
+	public static Delegate Action_string(LuaFunction func)
+	{
+		Action<string> d = (param0) =>
+		{
+			int top = func.BeginPCall();
+			IntPtr L = func.GetLuaState();
+			LuaScriptMgr.Push(L, param0);
+			func.PCall(top, 1);
+			func.EndPCall(top);
 		};
 		return d;
 	}
