@@ -8,7 +8,6 @@ using System;
 [AddComponentMenu("Scripts/Gconsole-uGUI/GConsoleuGUI")]
 public class GConsoleuGUI : MonoBehaviour
 {
-    public int max_OutputLength = 500; // If we put to much text in the textarea Unity will go nuts
     public Text consoleOutput;
     public InputField input;
     public GConsoleuGUISuggestion[] suggestions;
@@ -35,10 +34,6 @@ public class GConsoleuGUI : MonoBehaviour
 
     void OnOutput(string line)
     {
-        if (consoleOutput.text.Length > max_OutputLength)
-        {  // Shorten the textlength so Unity can handle it
-            consoleOutput.text = consoleOutput.text.Substring((consoleOutput.text.Length - max_OutputLength), max_OutputLength);
-        }
         consoleOutput.text += '\n' + line;	// add the console output to the output textarea TODO make this clamp length
     }
 

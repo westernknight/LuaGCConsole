@@ -15,14 +15,14 @@ public class Util {
     /// 取得Lua路径
     /// </summary>
     public static string LuaPath(string name) {
-        string path = Application.dataPath;
+        string path = Application.streamingAssetsPath;
         string lowerName = name.ToLower();
         if (lowerName.EndsWith(".lua")) {
             int index = name.LastIndexOf('.');
             name = name.Substring(0, index);
         }
         name = name.Replace('.', '/');
-        return path + "/uLua/lua/" + name + ".lua";
+        return path + "/lua/" + name + ".lua";
     }
 
     public static void Log(string str) {
